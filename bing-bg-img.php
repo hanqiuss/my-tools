@@ -7,6 +7,7 @@ if(!$imgUrl) exit(1);
 $imgUrl = 'https://cn.bing.com' . $imgUrl;
 $data   = file_get_contents($imgUrl);
 if($data){
+    if(!is_dir('img')){mkdir('img');}
     $list = glob('img\\*.jpg');
     file_put_contents('img/' . time().'.jpg', $data);
     file_put_contents('img/' . (time()+1).'.jpg', $data);
