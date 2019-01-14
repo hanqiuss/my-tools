@@ -1,5 +1,5 @@
 <?php
-$url = 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&nc=' . time() .'308&pid=hp&FORM=BEHPTB&video=1';
+$url = 'https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&nc=' . time() .'308&pid=hp&FORM=BEHPTB&video=1&ensearch=0';
 $ret = file_get_contents($url);
 $ret = json_decode($ret, true);
 $imgUrl = $ret['images'][0]['url'];
