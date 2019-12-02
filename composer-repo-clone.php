@@ -12,10 +12,10 @@ Connection: keep-alive
 
 EEE
 );
-//var_dump($argv);exit;
+
 open();
-//$result = getRemoteFile('packages.json', DIR .'packages.json');
-$result = file_get_contents(DIR .'packages.json');
+$result = getRemoteFile('packages.json', DIR .'packages.json');
+//$result = file_get_contents(DIR .'packages.json');
 $providers = json_decode($result,true)['provider-includes'];
 foreach ($providers as $provider => $hash){
     if(!empty($argv[1]) && $argv[1] !== $provider ){
@@ -68,9 +68,7 @@ function getRemoteFile($url,$filename){
     $str = "GET /$url" . HEADER;
     $fp = $GLOBALS['fp'];
     fwrite($fp, $str);
-    var_dump(time());
     list($header,$result) = readData();
-    var_dump(time());
     if($header['state']!=='200'){
         var_dump(stream_get_meta_data($GLOBALS['fp']));
         throw new Exception("get $url error : {$header['protocol']} {$header['state']} {$header['code']}" );
@@ -86,7 +84,6 @@ function getRemoteFile($url,$filename){
     }
     if($filename){
         $len = file_put_contents($filename, $result);
-        echo "write file $filename " . $len . PHP_EOL;
     }
     return $result;
 }
