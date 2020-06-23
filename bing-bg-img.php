@@ -19,7 +19,8 @@ if($data){
 }
 /*  
 task import xml (need Administrator permissions)
-cmd :  schtasks /create /tn taskname /xml xxx.xml
+1 rewrite the action element data
+2 cmd :  schtasks /create /tn taskname /xml xxx.xml
 
 <?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
@@ -37,7 +38,7 @@ cmd :  schtasks /create /tn taskname /xml xxx.xml
   </Triggers>
   <Principals>
     <Principal id="123">
-      <GroupId>SYSTEM</GroupId>
+      <GroupId>LOCAL SERVICE</GroupId>
       <RunLevel>LeastPrivilege</RunLevel>
     </Principal>
   </Principals>
